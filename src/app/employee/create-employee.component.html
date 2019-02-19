@@ -1,0 +1,82 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Create Employee</h3>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="fullName">Full Name</label>
+          <div class="col-sm-8">
+            <input formControlName="fullName" type="text" id="fullName" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email" class="col-sm-2 control-label">Email</label>
+          <div class="col-sm-8">
+            <input formControlName="email" type="text" id="email" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div formGroupName="skillForm">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Skill: </label>
+          <div class="col-sm-8">
+            <input class="form-control" formControlName="skillName" type="text" id="skillName">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Experience: </label>
+          <div class="col-sm-8">
+            <input  class="form-control" formControlName="experience" type="text" id="experience">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Proficiency</label>
+          <div class="col-sm-2">
+            <input type="radio" value="Beginner" formControlName="proficiency">Beginner
+          </div>
+          <div class="col-sm-2">
+            <input type="radio" value="Intermediate" formControlName="proficiency">Intermediate
+          </div>
+          <div class="col-sm-2">
+            <input type="radio" value="Advanced" formControlName="proficiency">Advanced
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <div class="btn-toolbar">
+            <button class="btn btn-primary" type="submit">Add a new Skill</button>
+            <button type="button" class="btn btn-danger" (click)="onLoadData()">Load</button>
+            <button type="button" class="btn btn-success pull-right">Save</button>
+        </div>
+      </div>
+    </div>
+</form>
+<div class="container">        
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Form Group</th>
+        <th>Form Control (fullName)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          touched : {{ employeeForm.touched }} 
+          <br>dirty : {{ employeeForm.dirty }} 
+          <br>valid : {{ employeeForm.valid }} 
+          <br>value : {{ employeeForm.value | json }} 
+        </td>
+        <td>
+          touched : {{ employeeForm.get('fullName').touched }} 
+            <br>dirty : {{ employeeForm.get('fullName').dirty }} 
+            <br>valid : {{ employeeForm.get('fullName').valid }} 
+            <br>value : {{ employeeForm.get('fullName').value }} 
+        </td>
+      </tr>
+
+      
+    </tbody>
+  </table>
+</div>
