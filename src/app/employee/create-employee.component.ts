@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl} from '@angular/forms';
-import { getMaxListeners } from 'cluster';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+
 
 @Component({
   selector: 'app-create-employee',
@@ -9,28 +9,28 @@ import { getMaxListeners } from 'cluster';
 })
 export class CreateEmployeeComponent implements OnInit {
   employeeForm: FormGroup;
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.employeeForm = new FormGroup({
-      fullName: new FormControl(),
-      email: new FormControl(),
+    this.employeeForm = this.fb.group({         // fb stands for FormBuilder class Reactive Form
+      fullName: ['', Validators.required],
+      email: [''],
       // Nested From Group
-      skillForm: new FormGroup({
-        skillName: new FormControl(),
-        experience: new FormControl(),
-        proficiency: new FormControl()
+      skillForm: this.fb.group({
+        skillName: [''],
+        experience: [''],
+        proficiency: ['Beginner']
       })
     });
   }
 
-  onSubmit(): void{
+  onSubmit(): void {
     //console.log(this.employeeForm.value);
     //console.log(this.employeeForm.controls.fullName.value);
     //console.log(this.employeeForm.get('fullName').value);
   }
 
-  onLoadData(): void{
+  onLoadData(): void {
     this.employeeForm.setValue({
       fullName: 'jahir',
       email: 'jahir@gmail.com',
